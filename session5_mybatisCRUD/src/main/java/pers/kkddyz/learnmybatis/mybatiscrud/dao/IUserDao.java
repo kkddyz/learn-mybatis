@@ -1,5 +1,6 @@
 package pers.kkddyz.learnmybatis.mybatiscrud.dao;
 
+import pers.kkddyz.learnmybatis.mybatiscrud.domain.QueryVo;
 import pers.kkddyz.learnmybatis.mybatiscrud.domain.User;
 
 import java.util.List;
@@ -52,4 +53,11 @@ public interface IUserDao {
      * @return
      */
     int findTotal();
+
+    /**
+     * 根据Vo对象查询
+     * @param vo
+     * @return
+     */
+    List<User> findUserByVo(QueryVo vo);
 }

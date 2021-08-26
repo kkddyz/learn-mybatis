@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import pers.kkddyz.learnmybatis.mybatiscrud.dao.IUserDao;
+import pers.kkddyz.learnmybatis.mybatiscrud.domain.QueryVo;
 import pers.kkddyz.learnmybatis.mybatiscrud.domain.User;
 
 import java.io.IOException;
@@ -128,5 +129,24 @@ public class TestMybatisCRUD {
     public void testFindTotal(){
         int total = mapper.findTotal();
         System.out.println(total);
+    }
+
+    @Test
+    public void testFindByVo(){
+
+        // 创建User
+        User user = new User();
+        user.setUsername("%三%"); // 只需要username就够了
+
+        // 创建vo
+        QueryVo vo = new QueryVo();
+        vo.setUser(user);
+
+        // 查询
+
+        List<User> users = mapper.findUserByVo(vo);
+        for (User user1 : users) {
+            System.out.println(user1);
+        }
     }
 }

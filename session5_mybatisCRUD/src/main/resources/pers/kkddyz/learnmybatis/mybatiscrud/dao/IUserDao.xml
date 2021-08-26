@@ -55,4 +55,11 @@
     <select id="findTotal" resultType="int">
         select count(id) from user
     </select>
+
+    <select id="findUserByVo"
+            parameterType="pers.kkddyz.learnmybatis.mybatiscrud.domain.QueryVo"
+            resultType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
+        select * from user where username like #{user.username}
+    </select>
+
 </mapper>
