@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * @author kkddyz
+ * 由于修改了User的属性,需要这里需要修改为重新生成的getter,setter
  */
 public class TestMybatisCRUD {
 
@@ -77,10 +78,10 @@ public class TestMybatisCRUD {
     public void testSaveUser() {
         // 准备测试的用户
         User user = new User();
-        user.setUsername("test saveUser");
-        user.setAddress("test saveUser");
-        user.setSex("女");
-        user.setBirthday(new Date());
+        user.setUserName("test saveUser");
+        user.setUserAddress("test saveUser");
+        user.setUserSex("女");
+        user.setUserBirthday(new Date());
 
 
         System.out.println(user); // order = "AFTER" 所以在saveUser()之前是不会保存id的
@@ -96,11 +97,11 @@ public class TestMybatisCRUD {
     public void testUpdateUser() {
         // 准备测试的用户
         User user = new User();
-        user.setUsername("test username");
-        user.setAddress("update address");
-        user.setSex("男");
-        user.setBirthday(new Date());
-        user.setId(5); // 指定id
+        user.setUserName("test username");
+        user.setUserAddress("update address");
+        user.setUserSex("男");
+        user.setUserBirthday(new Date());
+        user.setUserId(5); // 指定id
 
         // 更新用户信息
         mapper.updateUser(user);
@@ -136,7 +137,7 @@ public class TestMybatisCRUD {
 
         // 创建User
         User user = new User();
-        user.setUsername("%三%"); // 只需要username就够了
+        user.setUserName("%三%"); // 只需要username就够了
 
         // 创建vo
         QueryVo vo = new QueryVo();
