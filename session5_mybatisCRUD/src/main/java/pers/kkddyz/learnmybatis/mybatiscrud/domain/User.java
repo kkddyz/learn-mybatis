@@ -1,6 +1,7 @@
-package pres.kkddyz.learnmybatis.mybatiscrud.domain;
+package pers.kkddyz.learnmybatis.mybatiscrud.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author kkddyz
@@ -11,7 +12,7 @@ public class User implements Serializable {
     private String username;
     private String address;
     private String sex;
-    private String birthday;
+    private Date birthday;
 
     public Integer getId() {
         return id;
@@ -45,11 +46,12 @@ public class User implements Serializable {
         this.sex = sex;
     }
 
-    public String getBirthday() {
+
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

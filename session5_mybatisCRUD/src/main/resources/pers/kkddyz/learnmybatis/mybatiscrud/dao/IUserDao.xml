@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.kkddyz.learnmybatis.mybatiscrud.dao.IUserDao">
-    <select id="findAll" resultType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
-        select * from user;
+    <select id="findAll"
+            resultType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
+        select *
+        from user;
+    </select>
+
+    <select id="findById"
+            resultType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User"
+            parameterType="java.lang.Integer">
+        select *
+        from user
+        where id = #{uid}
+    </select>
+
+    <select id="findByName"
+            resultType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User"
+            parameterType="java.lang.String">
+        select *
+        from user
+        where username like #{name}
+    </select>
+
+
+    <insert id="saveUser" parameterType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
+        <!-- 配置获取插入操作后,插入记录的id(id是自增的) -->
+        <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into user(username, address, sex, birthday)
+        values (#{username}, #{address}, #{sex}, #{birthday});
+    </insert>
+
+    <!-- 但凡需要使用?就需要 parameterType + #{}来提取 ? 对应的值-->
+    <update id="updateUser" parameterType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
+        update user
+        set username=#{username},
+            address=#{address},
+            sex=#{sex},
+            birthday=#{birthday}
+        where id = #{id}
+    </update>
+
+    <!-- 这里是从int对象获取值,由于对象其实只有一个成员int,所以{}里面叫啥拿到的都是Integer对象的值-->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete
+        from user
+        where id = #{uid}
+    </delete>
+
+    <select id="findTotal" resultType="int">
+        select count(id) from user
     </select>
 </mapper>
