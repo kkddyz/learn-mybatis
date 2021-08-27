@@ -5,6 +5,15 @@
 
 <!-- mybatis主配置文件-->
 <configuration>
+    <!-- 配置properties -->
+    <properties>
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/learn_mybatis"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </properties>
+
+
     <!-- 配置环境 可以配置多个环境 环境是指连接数据库的配置 默认采用id为mysql的环境-->
     <environments default="mysql">
         <!-- 配置mysql环境 -->
@@ -14,10 +23,10 @@
             <!-- 数据源(连接池) -->
             <dataSource type="POOLED">
                 <!-- 配置连接数据库的4个基本信息 -->
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/learn_mybatis"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
