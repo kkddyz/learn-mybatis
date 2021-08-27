@@ -1,7 +1,6 @@
-package pers.kkddyz.learnmybatis.mybatiscrud.dao;
+package pers.kkddyz.learnmybatis.mybatisdao.dao;
 
-import pers.kkddyz.learnmybatis.mybatiscrud.domain.QueryVo;
-import pers.kkddyz.learnmybatis.mybatiscrud.domain.User;
+import pers.kkddyz.learnmybatis.mybatisdao.domain.User;
 
 import java.util.List;
 
@@ -18,10 +17,31 @@ public interface IUserDao {
     List<User> findAll();
 
     /**
+     * 保存用户
+     * @param user
+     */
+    void saveUser(User user);
+
+
+    /**
+     * 更新用户信息
+     * @param user
+     */
+    void updateUser(User user);
+
+
+    /**
+     * 删除用户
+     * @param id
+     */
+    void deleteUser(Integer id);
+
+    /**
      * id查询
      * @return
      */
     User findById(Integer integer);
+
 
     /**
      * 根据name模糊查询
@@ -31,33 +51,14 @@ public interface IUserDao {
     List<User> findByName(String name);
 
     /**
-     * 保存用户
-     * @param user
-     */
-    void saveUser(User user);
-
-    /**
-     * 更新用户信息
-     * @param user
-     */
-    void updateUser(User user);
-
-    /**
-     * 删除用户
-     * @param id
-     */
-    void deleteUser(Integer id);
-
-    /**
      * 查询总用户数
      * @return
      */
     int findTotal();
 
-    /**
-     * 根据Vo对象查询
-     * @param vo
-     * @return
-     */
-    List<User> findUserByVo(QueryVo vo);
+
+
+
+
+
 }
