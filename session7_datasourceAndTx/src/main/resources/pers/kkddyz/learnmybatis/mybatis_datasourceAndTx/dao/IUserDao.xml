@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.kkddyz.learnmybatis.mybatis_datasourceAndTx.dao.IUserDao">
+
+    <!-- 定义属性与数据库列名的映射关系 -->
+    <resultMap id="userMap" type="pers.kkddyz.learnmybatis.mybatis_datasourceAndTx.domain.User">
+        <!-- 主键字段的配置 -->
+        <id property="userId" column="id"></id>
+
+        <!-- 非主键字段配置 -->
+        <result property="userName" column="username"></result>
+        <result property="userSex" column="sex"></result>
+        <result property="userAddress" column="address"></result>
+        <result property="userBirthday" column="birthday"></result>
+    </resultMap>
+
+    <select id="findAll" resultMap="userMap">
+
+        select * from user;
+        --         select id       as userId,
+--                username as userName,
+--                address  as userAddress,
+--                sex      as userSex,
+--                birthday as userBirthday
+--         from user;
+    </select>
+
+    <select id="findById"
+            resultMap="userMap"
+            parameterType="java.lang.Integer">
+        select *
+        from user
+        where id = #{uid}
+    </select>
+
+    <select id="findByName"
+            resultMap="userMap"
+            parameterType="java.lang.String">
+        select *
+        from user
+        where username like #{name}
+    </select>
+
+
+    <insert id="saveUser" parameterType="user">
+        <!-- 配置获取插入操作后,插入记录的id(id是自增的) -->
+        <selectKey keyProperty="userId" keyColumn="userId" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into user(username, address, sex, birthday)
+        values (#{userName}, #{userAddress}, #{userSex}, #{userBirthday});
+    </insert>
+
+    <!-- 但凡需要使用?就需要 parameterType + #{}来提取 ? 对应的值-->
+    <update id="updateUser" parameterType="pers.kkddyz.learnmybatis.mybatis_datasourceAndTx.domain.User">
+        update user
+        set username=#{userName},
+            address=#{userAddress},
+            sex=#{userSex},
+            birthday=#{userBirthday}
+        where id = #{userId}
+    </update>
+
+    <!-- 这里是从int对象获取值,由于对象其实只有一个成员int,所以{}里面叫啥拿到的都是Integer对象的值-->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete
+        from user
+        where id = #{uid}
+    </delete>
+
+    <select id="findTotal" resultType="int">
+        select count(id)
+        from user
+    </select>
+
+
+
+</mapper>
