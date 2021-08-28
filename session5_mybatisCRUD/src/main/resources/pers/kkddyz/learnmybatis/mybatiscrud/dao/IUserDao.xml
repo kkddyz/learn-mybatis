@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.kkddyz.learnmybatis.mybatiscrud.dao.IUserDao">
 
+    <!-- 定义属性与数据库列名的映射关系 -->
     <resultMap id="userMap" type="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
         <!-- 主键字段的配置 -->
         <id property="userId" column="id"></id>
@@ -43,7 +44,7 @@
     </select>
 
 
-    <insert id="saveUser" parameterType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
+    <insert id="saveUser" parameterType="user">
         <!-- 配置获取插入操作后,插入记录的id(id是自增的) -->
         <selectKey keyProperty="userId" keyColumn="userId" resultType="int" order="AFTER">
             select last_insert_id();
