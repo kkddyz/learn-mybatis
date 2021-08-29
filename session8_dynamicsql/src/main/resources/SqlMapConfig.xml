@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- mybatis主配置文件-->
+<configuration>
+    <properties resource="jdbcConfig.properties"></properties>
+    <typeAliases>
+        <package name="pers.kkddyz.learnmybatis.domain"/>
+    </typeAliases>
+
+    <!-- 配置环境 可以配置多个环境 环境是指连接数据库的配置 默认采用id为mysql的环境-->
+    <environments default="mysql">
+        <!-- 配置mysql环境 -->
+        <environment id="mysql">
+            <!-- 配置事务类型 -->
+            <transactionManager type="jdbc"></transactionManager>
+            <!-- 数据源(连接池) -->
+            <dataSource type="POOLED">
+                <!-- 配置连接数据库的4个基本信息 -->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+        <package name="pers/kkddyz/learnmybatis/dao"/>
+    </mappers>
+</configuration>
+

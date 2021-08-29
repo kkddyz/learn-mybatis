@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.kkddyz.learnmybatis.dao.IUserDao">
+
+
+    <!-- 1=1 是为了保证在没有任何其他条件,也可以where不会报错-->
+    <!-- 动态sql就是动态生成where条件-->
+
+    <select id="findByCondition" resultType="user" parameterType="user">
+        -- 只使用if
+        <!--select *-->
+        <!--from user]-->
+        <!--where 1 = 1-->
+        <!--&#45;&#45; test的值就是判断条件\-->
+        <!--<if test="username != null">and username = #{username}</if>-->
+        <!--<if test="sex != null">and sex = #{sex}</if>-->
+
+        -- 使用where
+        select * from user
+        <where>
+            <if test="username != null">and username = #{username}</if>
+            <if test="sex != null">and sex = #{sex}</if>
+        </where>
+
+    </select>
+
+
+    <select id="findUserInIds" resultType="user" parameterType="QueryVo">
+        select * from user where id in
+        --#{}的内容要与item保持一致,item的值就是foreach中的循环变量名
+        <foreach collection="ids" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>
