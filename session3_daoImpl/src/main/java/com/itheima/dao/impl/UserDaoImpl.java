@@ -27,7 +27,7 @@ public class UserDaoImpl implements IUserDao {
         SqlSession sqlSession = factory.openSession();
 
         // 2. 通过SqlSession 执行查询 通过全类名.方法名指定配置的SQL语句
-        List<User> users = sqlSession.selectList(".ithecomima.dao.IUserDao.findAll");
+        List<User> users = sqlSession.selectList("com.itheima.dao.IUserDao.findAll");
 
         // 3. 关闭资源
         sqlSession.close();

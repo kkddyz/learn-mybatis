@@ -26,7 +26,7 @@
         如果使用注解此处应该使用class 属性 定位到dao接口
     -->
     <mappers>
-        <mapper class="com.com.itheima.dao.IUserDao"></mapper>
+        <mapper class="com.itheima.dao.IUserDao"></mapper>
     </mappers>
 
 
