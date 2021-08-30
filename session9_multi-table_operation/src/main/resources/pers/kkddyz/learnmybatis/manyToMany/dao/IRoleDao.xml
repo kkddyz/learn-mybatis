@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.kkddyz.learnmybatis.manyToMany.dao.IRoleDao">
+
+    <resultMap id="roleMap" type="pers.kkddyz.learnmybatis.manyToMany.domain.Role">
+        <id property="roleId" column="rid"></id>
+
+        <result property="roleName" column="role_name"></result>
+        <result property="roleDesc" column="role_desc"></result>
+        <collection property="users" ofType="pers.kkddyz.learnmybatis.manyToMany.domain.User">
+            <id property="id" column="id"></id>
+            <result property="username" column="username"></result>
+            <result property="sex" column="sex"></result>
+            <result property="address" column="address"></result>
+            <result property="birthday" column="birthday"></result>
+        </collection>
+    </resultMap>
+    <select id="findAll" resultMap="roleMap">
+        SELECT u.*, r.id AS rid, r.role_name, r.role_desc
+        FROM ROLE r
+                 LEFT OUTER JOIN user_role ur ON r.id = ur.rid
+                 LEFT OUTER JOIN USER u ON u.id = ur.uid
+        ;
+    </select>
+</mapper>
+
+
+
+
