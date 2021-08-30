@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- mybatis主配置文件-->
+<configuration>
+    <properties resource="jdbcConfig.properties"></properties>
+
+    <!-- 配置延加载-->
+    <settings>
+        <!--
+            延迟加载的全局开关。
+            当开启时，所有关联对象都会延迟加载。
+            特定关联关系中可通过设置 fetchType 属性来覆盖该项的开关状态。
+
+            关联对象,是指resultMap中使用association标签封装的对象
+            -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+
+        <!--
+            开启时，任一方法的调用都会加载该对象的所有延迟加载属性。
+            否则，每个延迟加载属性会按需加载
+
+            （在 3.4.1 及之前的版本中默认为 true
+            -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+
+
+    </settings>
+
+    <!-- 给实体类其别名-->
+    <typeAliases>
+        <package name="pers.kkddyz.learnmybatis.domain"/>
+    </typeAliases>
+
+    <!-- 配置环境 可以配置多个环境 环境是指连接数据库的配置 默认采用id为mysql的环境-->
+    <environments default="mysql">
+        <!-- 配置mysql环境 -->
+        <environment id="mysql">
+            <!-- 配置事务类型 -->
+            <transactionManager type="jdbc"></transactionManager>
+            <!-- 数据源(连接池) -->
+            <dataSource type="POOLED">
+                <!-- 配置连接数据库的4个基本信息 -->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+        <package name="pers/kkddyz/learnmybatis/dao"/>
+    </mappers>
+</configuration>
+

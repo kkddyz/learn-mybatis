@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.kkddyz.learnmybatis.dao.IAccountDao">
+
+
+    <!-- 定义封装account的resultMap-->
+    <resultMap id="accountMap" type="account">
+        <id property="id" column="id"></id>
+        <result property="uid" column="uid"></result>
+        <result property="money" column="money"></result>
+
+
+        <!--
+            不是直接封装到user对象中,而是在需要的时候加载
+            因此需要确定如何去加载 findByid : select属性 column属性
+        -->
+
+        <!--
+            延迟加载
+            select属性 : 指定查询对象主键的函数名(通过引用的函数查询用户的唯一标志) - 创建方法对象
+            column属性 : 指定select属性中的方法的入参 这里是uid
+            Method method  = new Method(pers.kkddyz.learnmybatis.dao.IAccountDao.findById);
+            Object o = method.invoke(resultSet.getColumn("uid")); 通过结果集的uid属性,查询到User对象
+            User user = (User)o; // 通过javaType cast
+        -->
+        <association property="user" javaType="user" select="pers.kkddyz.learnmybatis.dao.IUserDao.findById" column="uid"><!-- 接口是不能用alias起别名的-->
+
+        </association>
+    </resultMap>
+    <select id="findAll" resultMap="accountMap">
+        select * from account ;
+    </select>
+
+    <!-- 根据uid查询属于用户的account-->
+    <select id="findAccountByUid" resultType="account" parameterType="int">
+        select * from account where uid = #{uid};
+    </select>
+
+
+</mapper>

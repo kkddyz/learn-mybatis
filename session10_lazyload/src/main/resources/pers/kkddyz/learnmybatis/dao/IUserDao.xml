@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.kkddyz.learnmybatis.dao.IUserDao">
+
+    <!-- 定义封装user的resultMap-->
+    <resultMap id="userMap" type="user">
+        <!-- 封装基本类型 -->
+        <id property="id" column="id"></id>
+
+        <result property="username" column="username"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="address" column="address"></result>
+        <result property="sex" column="sex"></result>
+
+
+        <!-- 使用延迟加载
+        -->
+        <collection property="accounts" ofType="account"
+                    select="pers.kkddyz.learnmybatis.dao.IAccountDao.findAccountByUid" column="id">
+
+        </collection>
+    </resultMap>
+
+    <select id="findAll"  resultMap="userMap">
+        select * from user;
+    </select>
+
+    <select id="findById" resultType="user" parameterType="int">
+        select * from user where id = #{id};
+    </select>
+
+
+</mapper>
