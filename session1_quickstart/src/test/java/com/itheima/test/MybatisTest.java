@@ -20,7 +20,6 @@ public class MybatisTest {
 
     public static void main(String[] args) throws IOException {
 
-
         // 1. 读取配置文件
         InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
 
@@ -31,7 +30,7 @@ public class MybatisTest {
         // 3. 使用工厂创建SqlSession
         SqlSession sqlSession = factory.openSession();
 
-        // 4. 使用SqlSession创建代理对象(在web filter屏蔽敏感词第一次学到动态创建代理对象)
+        // 4. 使用SqlSession创建代理对象
         IUserDao mapper = sqlSession.getMapper(IUserDao.class);
 
         // 5. 使用代理对象执行方法

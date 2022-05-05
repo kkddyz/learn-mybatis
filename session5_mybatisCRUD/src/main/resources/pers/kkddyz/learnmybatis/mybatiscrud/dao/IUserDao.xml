@@ -19,12 +19,14 @@
     <select id="findAll" resultMap="userMap">
 
         select * from user;
-        --         select id       as userId,
---                username as userName,
---                address  as userAddress,
---                sex      as userSex,
---                birthday as userBirthday
---         from user;
+        <!--
+                        select id       as userId,
+               username as userName,
+               address  as userAddress,
+               sex      as userSex,
+               birthday as userBirthday
+        from user;
+        -->
     </select>
 
     <select id="findById"
