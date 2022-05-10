@@ -6,12 +6,13 @@
 
 
     <!-- 定义封装account的resultMap-->
-    <!-- resultMap的作用是什么?? -->
     <resultMap id="accountMap" type="account">
+        <!-- column使用查询记录的对应别名-->
         <id property="id" column="aid"></id>
         <result property="uid" column="uid"></result>
         <result property="money" column="money"></result>
-        <!-- 一对一关系映射,配置封装user的内容 -->
+
+        <!-- 配置引用对象user -->
         <association property="user"  javaType="user">
             <id property="id" column="id"></id>
 

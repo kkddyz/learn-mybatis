@@ -51,7 +51,7 @@ public class TestSessionCache {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         System.out.println("print user信息");
         List<User> users = mapper.findAll();
         for (User user : users) {
@@ -60,16 +60,32 @@ public class TestSessionCache {
     }
 
     @Test
-    public void testSqlSessionCache(){
+    public void testSqlSessionCache() {
+        //System.out.println();
+        //System.out.println("获取uid==41对象");
+        //User user1 = mapper.findById(41);
+        //System.out.println(user1);
+        //
+        //System.out.println("再次获取uid==41对象");
+        //User user2 = mapper.findById(41);
+        //System.out.println(user2);
+        //
+        //System.out.println("判断获取的是否是相同的对象:" + (user1 == user2));
+
+
+
+        System.out.println("获取uid==41对象");
         User user1 = mapper.findById(41);
         System.out.println(user1);
 
+        System.out.println("清除缓存");
         sqlSession.clearCache();
 
+        System.out.println("再次获取uid==41对象");
         User user2 = mapper.findById(41);
         System.out.println(user2);
 
         // 判断获取的是否是相同的对象
-        System.out.println(user1 == user2); // false
+        System.out.println("判断获取的是否是相同的对象:" + (user1 == user2)); // false
     }
 }

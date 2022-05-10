@@ -15,11 +15,9 @@
         <result property="sex" column="sex"></result>
 
 
-        <!-- 使用延迟加载
-        -->
+        <!-- 使用延迟加载 -->
         <collection property="accounts" ofType="account"
                     select="pers.kkddyz.learnmybatis.dao.IAccountDao.findAccountByUid" column="id">
-
         </collection>
     </resultMap>
 

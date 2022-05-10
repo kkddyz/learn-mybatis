@@ -23,9 +23,9 @@ import java.util.List;
  */
 public class TestMybatisCRUD {
 
-    private InputStream in; // init close都需要
-    private SqlSession sqlSession; // init close都需要
-    private IUserDao mapper; // 每个测试方法需要
+    private InputStream in;         // init close都需要
+    private SqlSession sqlSession;  // init close都需要
+    private IUserDao mapper;        // 每个测试方法需要
 
     @Before
     public void init() throws IOException {
@@ -41,13 +41,13 @@ public class TestMybatisCRUD {
         // 3. 使用工厂创建SqlSession
         sqlSession = factory.openSession();
 
-        // 4. 使用SqlSession创建代理对象(在web filter屏蔽敏感词第一次学到动态创建代理对象)
+        // 4. 使用SqlSession创建代理对象
         mapper = sqlSession.getMapper(IUserDao.class);
     }
 
     @After
-    public void destory() throws IOException {
-        System.out.println("destory");
+    public void destroy() throws IOException {
+        System.out.println("destroy");
         // 提交事务 (自动提交默认关闭,所以上一行代码最后会被回滚,相当于什么也没做)
         sqlSession.commit();
 
@@ -61,17 +61,12 @@ public class TestMybatisCRUD {
      */
     @Test
     public void testFindAll() {
-
-
         //  使用代理对象执行方法
         List<User> users = mapper.findAll();
 
         for (User user : users) {
             System.out.println(user);
-
         }
-
-
     }
 
     /**
@@ -88,9 +83,7 @@ public class TestMybatisCRUD {
 
 
         System.out.println(user); // order = "AFTER" 所以在saveUser()之前是不会保存id的
-
         mapper.saveUser(user);
-
         System.out.println(user); // 使用selectKey标签后,会自动将服务器生成的id,封装会传入的user对象
 
 

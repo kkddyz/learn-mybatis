@@ -17,19 +17,21 @@
         <!--<if test="username != null">and username = #{username}</if>-->
         <!--<if test="sex != null">and sex = #{sex}</if>-->
 
-        -- 使用where
+        <!-- 使用where就能不写1=1 -->
         select * from user
         <where>
-            <if test="username != null">and username = #{username}</if>
+            <if test="username != null AND 1 = 1">and username = #{username}</if>
             <if test="sex != null">and sex = #{sex}</if>
         </where>
 
     </select>
 
 
+    <!-- 根据QueryVo中的用户集合查询记录 -->
     <select id="findUserInIds" resultType="user" parameterType="QueryVo">
         select * from user where id in
         --#{}的内容要与item保持一致,item的值就是foreach中的循环变量名
+        <if test="ids != null and ids.size > 0"></if>
         <foreach collection="ids" open="(" close=")" item="id" separator=",">
             #{id}
         </foreach>

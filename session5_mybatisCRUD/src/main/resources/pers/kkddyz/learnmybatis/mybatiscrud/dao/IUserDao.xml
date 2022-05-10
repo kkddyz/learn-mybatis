@@ -5,8 +5,9 @@
 <mapper namespace="pers.kkddyz.learnmybatis.mybatiscrud.dao.IUserDao">
 
     <!-- 定义属性与数据库列名的映射关系 -->
-    <resultMap id="userMap" type="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
-        <!-- 主键字段的配置 -->
+    <!-- id映射的id, type 封装结果集的类型 -->
+    <resultMap id="userMap" type="User">
+        <!-- 主键字段的配置 property实体类属性,column 数据库属性 -->
         <id property="userId" column="id"></id>
 
         <!-- 非主键字段配置 -->
@@ -20,7 +21,7 @@
 
         select * from user;
         <!--
-                        select id       as userId,
+        select id       as userId,
                username as userName,
                address  as userAddress,
                sex      as userSex,
@@ -56,7 +57,7 @@
     </insert>
 
     <!-- 但凡需要使用?就需要 parameterType + #{}来提取 ? 对应的值-->
-    <update id="updateUser" parameterType="pers.kkddyz.learnmybatis.mybatiscrud.domain.User">
+    <update id="updateUser" parameterType="User">
         update user
         set username=#{userName},
             address=#{userAddress},
@@ -78,7 +79,7 @@
     </select>
 
     <select id="findUserByVo"
-            parameterType="pers.kkddyz.learnmybatis.mybatiscrud.domain.QueryVo"
+            parameterType="QueryVo"
             resultMap="userMap">
         select *
         from user

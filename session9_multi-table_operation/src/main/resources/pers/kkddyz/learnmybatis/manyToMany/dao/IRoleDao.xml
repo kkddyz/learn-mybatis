@@ -18,11 +18,13 @@
         </collection>
     </resultMap>
     <select id="findAll" resultMap="roleMap">
-        SELECT u.*, r.id AS rid, r.role_name, r.role_desc
+        SELECT u.*,
+               r.id AS rid,
+               r.role_name,
+               r.role_desc
         FROM ROLE r
                  LEFT OUTER JOIN user_role ur ON r.id = ur.rid
-                 LEFT OUTER JOIN USER u ON u.id = ur.uid
-        ;
+                 LEFT OUTER JOIN USER u ON u.id = ur.uid;
     </select>
 </mapper>
 

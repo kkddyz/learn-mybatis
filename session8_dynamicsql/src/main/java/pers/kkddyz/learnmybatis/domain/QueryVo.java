@@ -17,6 +17,9 @@ public class QueryVo {
         this.user = user;
     }
 
+    /**
+     * 返回用户id集合
+     */
     public List<Integer> getIds() {
         return ids;
     }

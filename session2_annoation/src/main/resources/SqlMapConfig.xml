@@ -5,8 +5,15 @@
 
 <!-- mybatis主配置文件-->
 <configuration>
-    <!-- 配置环境 可以配置多个环境 环境是指连接数据库的配置 默认采用id为mysql的环境-->
+
+    <!-- 配置别名 -->
+    <typeAliases>
+        <package name="com.itheima.domain"/>
+    </typeAliases>
+
+    <!-- 配置环境 -->
     <environments default="mysql">
+
         <!-- 配置mysql环境 -->
         <environment id="mysql">
             <!-- 配置事务类型 -->
@@ -22,9 +29,7 @@
         </environment>
     </environments>
 
-    <!--
-        如果使用注解此处应该使用class 属性 定位到dao接口
-    -->
+    <!-- 配置Mapper位置 -->
     <mappers>
         <mapper class="com.itheima.dao.IUserDao"></mapper>
     </mappers>

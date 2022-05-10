@@ -16,14 +16,11 @@
     -->
     <properties resource="jdbcConfig.properties"></properties>
 
-    <!-- typeAliases
-        用于配置类的别名,但是只能是domain下的类
-    -->
+    <!-- typeAliases用于配置类的别名,但是只能是domain下的类-->
     <typeAliases>
-        <!-- typeAlias type指定实体类 alias指定别名
-            指定的别名不区分大小写
-        -->
+        <!-- type指定实体类 alias指定别名 指定的别名不区分大小写 -->
         <!--<typeAlias type="pers.kkddyz.learnmybatis.mybatiscrud.domain.User" alias="User"></typeAlias>-->
+
         <!-- name用于指定需要起别名的包;指定后,该包的所有类都会注册别名.且别名就是类名,不区分大小写-->
         <package name="pers.kkddyz.learnmybatis.mybatiscrud.domain"/>
     </typeAliases>
@@ -46,14 +43,14 @@
     </environments>
 
     <!--
-        指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件
+        指定映射配置文件的位置
       -->
     <mappers>
         <!--<mapper resource="pers/kkddyz/learnmybatis/mybatiscrud/dao/IUserDao.xml"></mapper>-->
-        <!-- 与typeAliases中的package标签类似 指定接口的包路径
-                有了包路径后,由于编译后 mapper配置文件与接口在同一个包下;
-                mappers可以直接找到所有的配置文件
-        -->
+
+        <!-- 与typeAliases中的package标签类似 指定dao包路径
+             这样就不再需要单独写resource,class属性
+         -->
         <package name="pers/kkddyz/learnmybatis/mybatiscrud/dao"/>
     </mappers>
 </configuration>

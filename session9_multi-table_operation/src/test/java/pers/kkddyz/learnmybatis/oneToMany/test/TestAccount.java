@@ -54,8 +54,7 @@ public class TestAccount {
 
 
     /**
-     * 通过定义column->property的规则,将结果集封装到
-     * 持有user引用的account对象中
+     * 通过定义resultMap,将结果集封装到持有user引用的account对象中
      */
     @Test
     public void testFindAll() {

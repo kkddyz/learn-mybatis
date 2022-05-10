@@ -10,9 +10,7 @@ import java.util.List;
 public interface IUserDao {
 
     /**
-     * 查询所有
-     *
-     * @return the list
+     * 查询所有用户
      */
     List<User> findAll();
 

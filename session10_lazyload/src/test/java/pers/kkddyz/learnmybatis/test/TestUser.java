@@ -50,6 +50,9 @@ public class TestUser {
         in.close();
     }
 
+    /**
+     * 查询user关联的account
+     */
     @Test
     public void testFindAll(){
         System.out.println("print user信息");

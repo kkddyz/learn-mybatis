@@ -52,8 +52,7 @@ public class TestAccount {
 
 
     /**
-     * 通过定义column->property的规则,将结果集封装到
-     * 持有user引用的account对象中
+     * 查询account关联的users
      */
     @Test
     public void testFindAll() {
@@ -63,8 +62,4 @@ public class TestAccount {
             System.out.println(account);
         }
     }
-
-
-
-
 }

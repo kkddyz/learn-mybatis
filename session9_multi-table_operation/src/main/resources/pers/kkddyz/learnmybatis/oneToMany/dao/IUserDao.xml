@@ -14,7 +14,7 @@
         <result property="address" column="address"></result>
         <result property="sex" column="sex"></result>
 
-        <!-- 配置user.accounts集合的映射-->
+        <!-- 配置accounts集合的映射-->
         <collection property="accounts" ofType="account" >
             <id property="id" column="aid"></id>
 
